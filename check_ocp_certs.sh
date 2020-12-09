@@ -17,12 +17,10 @@ do
   if [ $i -gt 0 ] ;then
     MESSAGE=$( echo "Please check Openshift certificate, they are going to expire"  | sed 's/"/\"/g' | sed "s/'/\'/g" )
     JSON="{\"title\": \"Not took DevOps check for Openshift Certificate\", \"themeColor\": \"red\", \"text\": \"${MESSAGE}\" }"
-    #curl -H "Content-Type: application/json" -d "${JSON}" "${WEBHOOK_URL}" -v
-    echo 'curl -H "Content-Type: application/json" -d "${JSON}" "${WEBHOOK_URL}" -v'
+    curl -H "Content-Type: application/json" -d "${JSON}" "${WEBHOOK_URL}" -v
   else
     MESSAGE=$( echo "This is a DeadManSwitch of openshift certificate expiration check. Certificates are not going to expire"  | sed 's/"/\"/g' | sed "s/'/\'/g" )
     JSON="{\"title\": \"Not took DevOps check for Openshift Certificate\", \"themeColor\": \"green\", \"text\": \"${MESSAGE}\" }"
-    #curl -H "Content-Type: application/json" -d "${JSON}" "${WEBHOOK_URL}" -v
-    echo 'curl -H "Content-Type: application/json" -d "${JSON}" "${WEBHOOK_URL}" -v'
+    curl -H "Content-Type: application/json" -d "${JSON}" "${WEBHOOK_URL}" -v
   fi
 done
